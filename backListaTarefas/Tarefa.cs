@@ -27,7 +27,7 @@ internal class Tarefa
     private int id;
     private string titulo;
     private string descricao;
-    private DateTime dataCadastro;
+    private DateTime dataCriacao;
     private DateTime? prazo;
     private StatusTarefa status;
     private Prioridade prioridade;
@@ -37,16 +37,23 @@ internal class Tarefa
     public int Id => id; // Retorna o valor da variavel id principal
     public string Titulo => titulo;
     public string Descricao => descricao;
-    public DateTime DataCadastro => dataCadastro;
+    public DateTime DataCriacao => dataCriacao;
     public DateTime? Prazo => prazo;
     public StatusTarefa Status => status;
     public Prioridade Prioridade => prioridade;
     //Impedir que adicionem etiquetas fora dos métodos corretos
     public IReadOnlyList<Etiqueta> Etiquetas => etiquetas.AsReadOnly();
 
-    public Tarefa()
+    public Tarefa(int id, string titulo, string descricao, Prioridade prioridade, DateTime? prazo = null)
     {
-        
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        //this.dataCriacao = Datetime.Now;
+        this.prazo = prazo;
+        this.status = StatusTarefa.Pendente;
+        this.prioridade = prioridade;
+        this.etiquetas = new List<Etiqueta>();
     }
 
     public void Concluir()

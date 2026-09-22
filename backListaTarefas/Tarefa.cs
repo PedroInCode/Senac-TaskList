@@ -62,31 +62,57 @@ internal class Tarefa
 
     public void Concluir()
     {
-
+        this._status = StatusTarefa.Concluido;
     }
 
     public void Reabrir()
     {
-
+        this._status = StatusTarefa.EmAndamento;
     }
 
     public void AlterarPrazo(DateTime prazo)
     {
-
+        this._prazo = prazo;
     }
 
     public void AdicionarEtiqueta(Etiqueta etiqueta)
     {
+        // ! -> Não = Se Não contém a etiqueta
+        if (!_etiquetas.Contains(etiqueta))
+        {
+            _etiquetas.Add(etiqueta);
+        }
+        else
+        {
+            Console.WriteLine("Essa etiqueta já existe na lista!");
+        }
 
+        
     }
 
     public void RemoverEtiqueta(Etiqueta etiqueta)
     {
-
+        if (_etiquetas.Contains(etiqueta))
+        {
+            _etiquetas.Remove(etiqueta);
+        }
+        else
+        {
+            Console.WriteLine("Etiqueta não existe dentro da lista!!");
+        }
+       
+        
     }
 
     public bool EstaAtrasada()
     {
-        return true;
+        if (_prazo.HasValue && _status != StatusTarefa.Concluido)
+        {
+            return DateTime.Now > _prazo.Value;
+        }
+
+        Console.WriteLine("Status: A tarefa não está atrasada.");
+        return false;
+        
     }
 }

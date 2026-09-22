@@ -8,32 +8,52 @@ namespace backListaTarefas;
 
 internal class ListaTarefas
 {
-    private string Nome;
+    private string _nome;
     private List<Tarefa> tarefas;
 
     public ListaTarefas(string nome)
     {
-        this.Nome = nome;
+        this._nome = nome;
         this.tarefas = new List<Tarefa>();
     }
 
     public void AdicionarTarefa(Tarefa tarefa)
     {
+        if (!tarefas.Contains(tarefa))
+        {
+            tarefas.Add(tarefa);
+        }
 
     }
 
-    public bool RemoverTarefa(Tarefa tarefa)
+    public bool RemoverTarefa(int id)
     {
+        var tarefa = BuscarTarefa(id);
+
+        if(tarefa != null)
+            return this.tarefas.Remove(tarefa);
+
         return false;
     }
 
-    public async Task BuscarTarefa(int id)
+    public Tarefa? BuscarTarefa(int id)
     {
+        foreach(Tarefa tarefa in this.tarefas)
+        {
+            if(tarefa.Id == id)
+                return tarefa;
+        }
 
+        return null;
     }
 
-    public async Task ListarTarefas(List<Tarefa> tarefas)
+    public List<Tarefa> ListarTarefas()
     {
+       
+    }
 
+    public void ListarTarefaPorStatus(StatusTarefa status)
+    {
+        
     }
 }

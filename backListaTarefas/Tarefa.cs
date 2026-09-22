@@ -24,36 +24,40 @@ public enum Prioridade
 internal class Tarefa
 {
     //Propriedades privadas
-    private int id;
-    private string titulo;
-    private string descricao;
-    private DateTime dataCriacao;
-    private DateTime? prazo;
-    private StatusTarefa status;
-    private Prioridade prioridade;
-    private List<Etiqueta> etiquetas;
+    //Propriedade Privada -> _prop
+
+    private int _id;
+    private string _titulo;
+    private string _descricao;
+    private DateTime _dataCriacao;
+    private DateTime? _prazo;
+    private StatusTarefa _status;
+    private Prioridade _prioridade;
+    private List<Etiqueta> _etiquetas;
 
     //Propriedades de acesso
-    public int Id => id; // Retorna o valor da variavel id principal
-    public string Titulo => titulo;
-    public string Descricao => descricao;
-    public DateTime DataCriacao => dataCriacao;
-    public DateTime? Prazo => prazo;
-    public StatusTarefa Status => status;
-    public Prioridade Prioridade => prioridade;
-    //Impedir que adicionem etiquetas fora dos métodos corretos
-    public IReadOnlyList<Etiqueta> Etiquetas => etiquetas.AsReadOnly();
+    //Propriedade Pública -> Primeira letra Maiuscula
 
+    public int Id => _id; // Retorna o valor da variavel id principal
+    public string Titulo => _titulo;
+    public string Descricao => _descricao;
+    public DateTime DataCriacao => _dataCriacao;
+    public DateTime? Prazo => _prazo;
+    public StatusTarefa Status => _status;
+    public Prioridade Prioridade => _prioridade;
+    public IReadOnlyList<Etiqueta> Etiquetas => _etiquetas.AsReadOnly(); //Impedir que adicionem etiquetas fora dos métodos corretos
+
+    // Propriedades no construtor -> (minusculo)
     public Tarefa(int id, string titulo, string descricao, Prioridade prioridade, DateTime? prazo = null)
     {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        //this.dataCriacao = Datetime.Now;
-        this.prazo = prazo;
-        this.status = StatusTarefa.Pendente;
-        this.prioridade = prioridade;
-        this.etiquetas = new List<Etiqueta>();
+        this._id = id;
+        this._titulo = titulo;
+        this._descricao = descricao;
+        this._dataCriacao = DateTime.Now;
+        this._prazo = prazo;
+        this._status = StatusTarefa.Pendente;
+        this._prioridade = prioridade;
+        this._etiquetas = new List<Etiqueta>();
     }
 
     public void Concluir()

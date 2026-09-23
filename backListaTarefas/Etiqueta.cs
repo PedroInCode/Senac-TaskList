@@ -8,17 +8,20 @@ namespace backListaTarefas;
 
 public class Etiqueta
 {
-    private string Nome;
-    private string Cor;
+    private string _nome;
+    private string _cor;
+
+    public string Nome => _nome;
+    public string Cor => _cor;
 
     public Etiqueta(string nome, string cor)
     {
-        this.Nome = nome;
-        this.Cor = cor;
+        this._nome = nome;
+        this._cor = cor;
     }
 
     public void Renomear(string novoNome)
     {
-        this.Nome = novoNome;
+        this._nome = novoNome;
     }
 }

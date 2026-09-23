@@ -29,14 +29,25 @@ internal class Program
         tarefaAtrasada.AdicionarEtiqueta(tagBackend);
 
         //Criando Lista de Tarefa
-        ListaTarefas lista1 = new("Tarefas Back-end");
+        ListaTarefas listaTarefa = new("Tarefas Back-end");
 
+        //Adicionando tarefas na lista
+        listaTarefa.AdicionarTarefa(tarefaSemPrazo);
+        listaTarefa.AdicionarTarefa(tarefaAtrasada);
 
-        lista1.AdicionarTarefa(tarefaSemPrazo);
-        //lista1.AdicionarTarefa(tarefaAtrasada);
-        //lista1.ListarTarefaPorStatus(StatusTarefa.Concluido);
+        //Exibindo as tarefas dentro da lista
+        Console.WriteLine("-------- PAINEL TAREFAS ---------\n");
+        foreach(Tarefa tarefa in listaTarefa.ListarTarefas())
+        {
+            Console.WriteLine($"[{tarefa.Id}] Titulo: {tarefa.Titulo}\n" +
+                $"    Status: {tarefa.Status}\n" +
+                $"    Prioridade: {tarefa.Prioridade}");
 
-        lista1.BuscarTarefa(1);
+            foreach(Etiqueta tag in tarefa.Etiquetas)
+            {
+                Console.Write($"{tag.Nome} {tag.Cor}");
+            }
+        }
 
 
     }

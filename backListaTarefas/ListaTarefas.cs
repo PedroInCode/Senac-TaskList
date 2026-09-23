@@ -49,11 +49,50 @@ internal class ListaTarefas
 
     public List<Tarefa> ListarTarefas()
     {
-       
+        return this.tarefas.ToList();
     }
 
-    public void ListarTarefaPorStatus(StatusTarefa status)
+    public List<Tarefa>? ListarTarefasPorStatus(StatusTarefa status)
     {
-        
+        List<Tarefa> tarefasFiltradas = new();
+
+        foreach (Tarefa tarefa in this.tarefas)
+        {
+            if (tarefa.Status == status)
+            {
+                tarefasFiltradas.Add(tarefa);
+            }
+        }
+
+        if (tarefasFiltradas.Count == 0)
+        {
+            Console.WriteLine($"A lista não contém tarefas com status {status}");
+            return null;
+        }
+
+        return tarefasFiltradas;
     }
+
+    public List<Tarefa>? ListarTarefasPorPrioridade(Prioridade prioridade)
+    {
+        List<Tarefa> tarefasFiltradas = new();
+
+        foreach (Tarefa tarefa in this.tarefas)
+        {
+            if (tarefa.Prioridade == prioridade)
+            {
+                tarefasFiltradas.Add(tarefa);
+            }
+        }
+
+        if (tarefasFiltradas.Count == 0)
+        {
+            Console.WriteLine($"A lista não contém tarefas com prioridade {prioridade}");
+            return null;
+        }
+
+        return tarefasFiltradas;
+    }
+
+   
 }

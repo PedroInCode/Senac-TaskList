@@ -9,21 +9,22 @@ namespace backListaTarefas;
 internal class ListaTarefas
 {
     private string _nome;
-    private List<Tarefa> tarefas;
+    private List<Tarefa> _tarefas;
 
     public string Nome => _nome;
+    public IReadOnlyList<Tarefa> Tarefas => _tarefas.AsReadOnly();
 
     public ListaTarefas(string nome)
     {
         this._nome = nome;
-        this.tarefas = new List<Tarefa>();
+        this._tarefas = new List<Tarefa>();
     }
 
     public void AdicionarTarefa(Tarefa tarefa)
     {
-        if (!tarefas.Contains(tarefa))
+        if (!_tarefas.Contains(tarefa))
         {
-            tarefas.Add(tarefa);
+            _tarefas.Add(tarefa);
         }
 
     }
@@ -33,68 +34,31 @@ internal class ListaTarefas
         var tarefa = BuscarTarefa(id);
 
         if(tarefa != null)
-            return this.tarefas.Remove(tarefa);
+            return this._tarefas.Remove(tarefa);
 
+        Console.WriteLine("Tarefa não existe!");
         return false;
     }
 
     public Tarefa? BuscarTarefa(int id)
     {
-        foreach(Tarefa tarefa in this.tarefas)
-        {
-            if(tarefa.Id == id)
-                return tarefa;
-        }
-
-        return null;
+        return this._tarefas.FirstOrDefault(ta => ta.Id == id);
     }
 
     public List<Tarefa> ListarTarefas()
     {
-        return this.tarefas.ToList();
+        return this._tarefas.ToList();
     }
 
-    public List<Tarefa>? ListarTarefasPorStatus(StatusTarefa status)
+    public List<Tarefa> ListarTarefasPorStatus(StatusTarefa status)
     {
-        List<Tarefa> tarefasFiltradas = new();
-
-        foreach (Tarefa tarefa in this.tarefas)
-        {
-            if (tarefa.Status == status)
-            {
-                tarefasFiltradas.Add(tarefa);
-            }
-        }
-
-        if (tarefasFiltradas.Count == 0)
-        {
-            Console.WriteLine($"A lista não contém tarefas com status {status}");
-            return null;
-        }
-
+        List<Tarefa> tarefasFiltradas = this._tarefas.Where(tarefa => tarefa.Status == status).ToList();
         return tarefasFiltradas;
     }
 
-    public List<Tarefa>? ListarTarefasPorPrioridade(Prioridade prioridade)
+    public List<Tarefa> ListarTarefasPorPrioridade(Prioridade prioridade)
     {
-        List<Tarefa> tarefasFiltradas = new();
-
-        foreach (Tarefa tarefa in this.tarefas)
-        {
-            if (tarefa.Prioridade == prioridade)
-            {
-                tarefasFiltradas.Add(tarefa);
-            }
-        }
-
-        if (tarefasFiltradas.Count == 0)
-        {
-            Console.WriteLine($"A lista não contém tarefas com prioridade {prioridade}");
-            return null;
-        }
-
+        List<Tarefa> tarefasFiltradas = this._tarefas.Where(tarefa => tarefa.Prioridade == prioridade).ToList();
         return tarefasFiltradas;
-    }
-
-   
+    } 
 }

@@ -8,6 +8,7 @@ internal class Program
         //Etiqueta Back-End
         Etiqueta tagBackend = new("Backend", "Verde");
 
+        //Criando Objetos do tipo Tarefa
         Tarefa tarefaSemPrazo = new Tarefa(
             1, 
             "Desenvolver Controller",
@@ -24,6 +25,7 @@ internal class Program
             Prioridade.Alta,
             DateTime.Now.AddDays(-2)
             );
+
         //Adicionando Etiquetas nas tarefas
         tarefaSemPrazo.AdicionarEtiqueta(tagBackend);
         tarefaAtrasada.AdicionarEtiqueta(tagBackend);
@@ -49,7 +51,5 @@ internal class Program
                 Console.Write($"    {tag.Nome} {tag.Cor}\n\n");
             }
         }
-
-
     }
 }

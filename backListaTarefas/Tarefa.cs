@@ -86,8 +86,6 @@ internal class Tarefa
         {
             Console.WriteLine("Essa etiqueta já existe na lista!");
         }
-
-        
     }
 
     public void RemoverEtiqueta(Etiqueta etiqueta)
@@ -100,8 +98,6 @@ internal class Tarefa
         {
             Console.WriteLine("Etiqueta não existe dentro da lista!!");
         }
-       
-        
     }
 
     public bool EstaAtrasada()
@@ -112,7 +108,6 @@ internal class Tarefa
         }
 
         Console.WriteLine("Status: A tarefa não está atrasada.");
-        return false;
-        
+        return false; 
     }
 }

@@ -11,6 +11,8 @@ internal class ListaTarefas
     private string _nome;
     private List<Tarefa> tarefas;
 
+    public string Nome => _nome;
+
     public ListaTarefas(string nome)
     {
         this._nome = nome;

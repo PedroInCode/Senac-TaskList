@@ -36,7 +36,8 @@ internal class Program
         listaTarefa.AdicionarTarefa(tarefaAtrasada);
 
         //Exibindo as tarefas dentro da lista
-        Console.WriteLine("-------- PAINEL TAREFAS ---------\n");
+        Console.WriteLine("-------- PAINEL DE TAREFAS ---------\n");
+        Console.WriteLine($"Lista: {listaTarefa.Nome}\n");
         foreach(Tarefa tarefa in listaTarefa.ListarTarefas())
         {
             Console.WriteLine($"[{tarefa.Id}] Titulo: {tarefa.Titulo}\n" +
@@ -45,7 +46,7 @@ internal class Program
 
             foreach(Etiqueta tag in tarefa.Etiquetas)
             {
-                Console.Write($"{tag.Nome} {tag.Cor}");
+                Console.Write($"    {tag.Nome} {tag.Cor}\n\n");
             }
         }
 
